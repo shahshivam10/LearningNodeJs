@@ -61,3 +61,16 @@ var filePath = fs.readdir('./', function(err, files) {
 }
 );
 
+
+const EventEmitter = require('events');
+const emmiter = new EventEmitter( );
+
+//register a listener
+emmiter.on('message logged', function(arg){
+    console.log(`listener called test ${arg.id} ${arg.url}`);
+})
+
+//raise an event
+emmiter.emit('message logged', {id: 1, url:'test.com'} );
+
+//raise logging and send some data
